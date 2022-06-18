@@ -4,23 +4,14 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Window extends JFrame {
-    static Image bomb;
-    static Image boom;
+
     static Window window = new Window();
     static long frameTime = System.nanoTime();
-    static float bombX = 0;
-    static float bombY = 0;
-    static float bombV = 100;
-    static int r = 400;
-    static int t = 0;
-    static boolean left;
-    static boolean right;
+
 
     public static void main(String[] args) throws IOException {
 
         initFrame();
-        bomb = ImageIO.read(Window.class.getResourceAsStream("icon.png"));
-        boom = ImageIO.read(Window.class.getResourceAsStream("boom.jpg"));
         GameField gameField = new GameField();
         window.add(gameField);
         window.setVisible(true);
@@ -32,8 +23,7 @@ public class Window extends JFrame {
     static void initFrame() {
         window.pack();
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setBounds(0, 0, dimension.width, dimension.height);
+        window.setBounds(0, 0, 1000, 1000);
 
 
     }
@@ -51,17 +41,48 @@ public class Window extends JFrame {
     }
 
     private static void move(Graphics g) {
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
         long currentTime = System.nanoTime();
-        float deltaTime = (currentTime - frameTime) * 0.00000001f;
+        float deltaTime = (currentTime - frameTime) * 0.0000001f;
         frameTime = currentTime;
+        g.drawImage(TrollFace.center, 435, 435, null);
 
-        g.drawImage(boom,dimension.width/2 - bomb.getWidth(null)/2,dimension.height/2 - bomb.getHeight(null)/2,null);
 
-        t = (int) (t + bombV * deltaTime);
-        bombX = (float) (r * Math.cos(Math.toRadians(t)) + dimension.width/2 );
-        bombY = (float) (r * Math.sin(Math.toRadians(t))+ dimension.height/2 );
-        g.drawImage(bomb, (int) bombX, (int) bombY, null);
+        TrollFace.trollFaceT1 = TrollFace.trollFaceT1 + deltaTime * TrollFace.trollFaceV1;
+        TrollFace.trollFaceX1 = (float) (TrollFace.trollFaceR1 * Math.cos(Math.toRadians(TrollFace.trollFaceT1)) + 435);
+        TrollFace.trollFaceY1 = (float) (TrollFace.trollFaceR1 * Math.sin(Math.toRadians(TrollFace.trollFaceT1)) + 435);
+
+        TrollFace.trollFaceT2 = TrollFace.trollFaceT2 + deltaTime * TrollFace.trollFaceV2;
+        TrollFace.trollFaceX2 = (float) (TrollFace.trollFaceR2 * Math.cos(Math.toRadians(TrollFace.trollFaceT2)) + 435);
+        TrollFace.trollFaceY2 = (float) (TrollFace.trollFaceR2 * Math.sin(Math.toRadians(TrollFace.trollFaceT2)) + 435);
+
+        TrollFace.trollFaceT3 = TrollFace.trollFaceT3 + deltaTime * TrollFace.trollFaceV3;
+        TrollFace.trollFaceX3 = (float) (TrollFace.trollFaceR3 * Math.cos(Math.toRadians(TrollFace.trollFaceT3)) + 435);
+        TrollFace.trollFaceY3 = (float) (TrollFace.trollFaceR3 * Math.sin(Math.toRadians(TrollFace.trollFaceT3)) + 435);
+
+        TrollFace.trollFaceT4 = TrollFace.trollFaceT4 + deltaTime * TrollFace.trollFaceV4;
+        TrollFace.trollFaceX4 = (float) (TrollFace.trollFaceR4 * Math.cos(Math.toRadians(TrollFace.trollFaceT4)) + 435);
+        TrollFace.trollFaceY4 = (float) (TrollFace.trollFaceR4 * Math.sin(Math.toRadians(TrollFace.trollFaceT4)) + 435);
+
+        TrollFace.trollFaceT5 = TrollFace.trollFaceT5 + deltaTime * TrollFace.trollFaceV5;
+        TrollFace.trollFaceX5 = (float) (TrollFace.trollFaceR5 * Math.cos(Math.toRadians(TrollFace.trollFaceT5)) + 435);
+        TrollFace.trollFaceY5 = (float) (TrollFace.trollFaceR5 * Math.sin(Math.toRadians(TrollFace.trollFaceT5)) + 435);
+
+        TrollFace.trollFaceT6 = TrollFace.trollFaceT6 + deltaTime * TrollFace.trollFaceV6;
+        TrollFace.trollFaceX6 = (float) (TrollFace.trollFaceR6 * Math.cos(Math.toRadians(TrollFace.trollFaceT6)) + 435);
+        TrollFace.trollFaceY6 = (float) (TrollFace.trollFaceR6 * Math.sin(Math.toRadians(TrollFace.trollFaceT6)) + 435);
+
+
+
+
+        g.drawImage(TrollFace.t1, (int) TrollFace.trollFaceX1, (int) TrollFace.trollFaceY1, null);
+        g.drawImage(TrollFace.t2, (int) TrollFace.trollFaceX2, (int) TrollFace.trollFaceY2, null);
+        g.drawImage(TrollFace.t3, (int) TrollFace.trollFaceX3, (int) TrollFace.trollFaceY3, null);
+        g.drawImage(TrollFace.t4, (int) TrollFace.trollFaceX4, (int) TrollFace.trollFaceY4, null);
+        g.drawImage(TrollFace.t5, (int) TrollFace.trollFaceX5, (int) TrollFace.trollFaceY5, null);
+        g.drawImage(TrollFace.t6, (int) TrollFace.trollFaceX6, (int) TrollFace.trollFaceY6, null);
+
+
 
 
     }
